@@ -13,6 +13,8 @@ class Ingredient:
         return f"Ingredient('{self.name}', {self.quantity}, '{self.unit}')"
     
     def __eq__(self, other):
+        if not isinstance(other, Ingredient):
+            return False
         return self.name == other.name and self.unit == other.unit
 
 
@@ -23,6 +25,13 @@ class Recipe:
             self.ingredients = []
         else:
             self.ingredients = ingredients
+    
+    def add_ingredient(self, ingredient):
+        for existing in self.ingredients:
+            if existing == ingredient:
+                existing.quantity += ingredient.quantity
+                return
+        self.ingredients.append(ingredient)
     
     def __len__(self):
         return len(self.ingredients)
