@@ -24,7 +24,7 @@ class Recipe:
         if ingredients is None:
             self.ingredients = []
         else:
-            self.ingredients = ingredients
+            self.ingredients = ingredients.copy()
     
     def add_ingredient(self, ingredient):
         for existing in self.ingredients:
