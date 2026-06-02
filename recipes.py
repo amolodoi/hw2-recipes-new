@@ -63,3 +63,21 @@ class DietaryRecipe(Recipe):
     
     def __str__(self):
         return f"[{self.diet_type}] {self.title}"
+
+
+class ShoppingList:
+    def __init__(self):
+        self.items = []
+    
+    def add_recipe(self, recipe, portions):
+        if portions <= 0:
+            raise ValueError("Количество порций должно быть положительным")
+        scaled = recipe.scale(portions)
+        for ing in scaled.ingredients:
+            self.items.append((ing, recipe.title))
+    
+    def get_list(self):
+        result = []
+        for ing, title in self.items:
+            result.append(ing)
+        return result
