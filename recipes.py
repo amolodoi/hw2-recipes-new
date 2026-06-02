@@ -33,8 +33,12 @@ class Recipe:
                 return
         self.ingredients.append(ingredient)
     
+    @staticmethod
+    def is_valid_ratio(ratio):
+        return ratio > 0
+    
     def scale(self, ratio):
-        if ratio <= 0:
+        if not self.is_valid_ratio(ratio):
             raise ValueError("Коэффициент должен быть положительным")
         new_ingredients = []
         for ing in self.ingredients:
