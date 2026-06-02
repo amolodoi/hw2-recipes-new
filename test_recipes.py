@@ -1,5 +1,5 @@
 import pytest
-from recipes import Ingredient, Recipe
+from recipes import Ingredient, Recipe, ShoppingList
 
 
 class TestIngredient:
@@ -29,3 +29,18 @@ class TestRecipe:
         recipe = Recipe("Блины", [Ingredient("Мука", 500.0, "г")])
         scaled = recipe.scale(2)
         assert scaled.ingredients[0].quantity == 1000.0
+
+
+class TestShoppingList:
+    def test_add_recipe(self):
+        sl = ShoppingList()
+        recipe = Recipe("Блины", [Ingredient("Мука", 500.0, "г")])
+        sl.add_recipe(recipe, 2)
+        assert len(sl.items) == 1
+    
+    def test_get_list(self):
+        sl = ShoppingList()
+        recipe = Recipe("Блины", [Ingredient("Мука", 500.0, "г")])
+        sl.add_recipe(recipe, 2)
+        result = sl.get_list()
+        assert len(result) == 1
