@@ -54,3 +54,12 @@ class Recipe:
         for ing in self.ingredients:
             result += f"\n  - {ing}"
         return result
+
+
+class DietaryRecipe(Recipe):
+    def __init__(self, title, diet_type, ingredients=None):
+        super().__init__(title, ingredients)
+        self.diet_type = diet_type
+    
+    def __str__(self):
+        return f"[{self.diet_type}] {self.title}"
