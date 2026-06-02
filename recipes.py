@@ -33,6 +33,15 @@ class Recipe:
                 return
         self.ingredients.append(ingredient)
     
+    def scale(self, ratio):
+        if ratio <= 0:
+            raise ValueError("Коэффициент должен быть положительным")
+        new_ingredients = []
+        for ing in self.ingredients:
+            new_ing = Ingredient(ing.name, ing.quantity * ratio, ing.unit)
+            new_ingredients.append(new_ing)
+        return Recipe(self.title, new_ingredients)
+    
     def __len__(self):
         return len(self.ingredients)
     
